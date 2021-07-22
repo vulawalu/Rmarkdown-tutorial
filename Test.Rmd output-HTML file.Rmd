@@ -1,0 +1,29 @@
+#Analsysis of the cars data set in R
+##by Su
+
+**Part1**
+**these are called Code blocks/chunks**
+
+
+```{r}
+data(cars)
+str(cars)
+summary(cars)
+plot(cars)
+```
+
+**Part 2**
+```{r}
+hist(cars$speed)
+boxplot(cars$dist)
+```
+
+**Inline R code**
+##you can find a value by assigning it `r` and Rmarkdown will find that value for you. 
+##Eg. here `r` is the mean which is 15 as we can see in the below console. Instead of manually typing it, Rmarkdown uses that shortcut
+The mean speed of cars was `r mean(cars$speed)`
+
+
+##The end
+
+##Save and knit in HTML
