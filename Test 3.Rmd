@@ -1,0 +1,39 @@
+---
+title: "Test 3"
+author: "Susana Vulawalu"
+date: "7/25/2021"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+#Bring in cyclone data
+```{r}
+library(tidyverse)
+library(readxl)
+library(lubridate)
+
+library(readxl)
+Cyclone_data <- read_excel("~/Documents/Study/Climate data in Lau/Excel/Cyclone data.xlsx")%>%
+  mutate(winds=factor('Initial winds warning', levels =c("Gale, Storm, Hurricane"),ordered = T))
+
+##freq
+
+cyclHist<-ggplot(Cyclone_data,aes(x=Date,groups=winds,fill=winds))+
+  geom_histogram(size=3)+
+  theme_bw()
+
+summary(Cyclone_data)
+View(Cyclone_data)
+
+cyclHist<-ggplot(Cyclone_data,aes(x=Date,groups=winds,fill=winds))+
+  geom_histogram(size=3)+
+  theme_bw()
+cycl<-readxl::read_excel("data/cyclone/cycloneData.xlsx",na=c(""," "))%>%
+  mutate(winds=factor(`Initial winds warning`,levels=c("Gale","Storm","Hurricane"),ordered = T))
+
+
+cyclHist
+
+```
+
