@@ -1,0 +1,56 @@
+---
+title: "Test 4"
+author: "Susana Vulawalu"
+date: "7/26/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,message = FALSE,warning = FALSE)
+
+```
+
+#load librarys
+```{r}
+library(readxl)
+library(tidyverse)
+library(lubridate)
+library(tidyr)
+library(dplyr)
+```
+
+#Bring in rainfall data
+
+#Code chunk 1
+Data are from the Fiji Met. Office with link to [Australian Met. service](http://www.bom.gov.au/oceanography/projects/spslcmp/data/monthly.shtml)
+#Mutate and pivot commands
+
+```{r}
+library(readxl)
+Lakeba_rainfall <- read_excel("Documents/Study/Climate data in Lau/Excel/Lakeba_rainfall.xlsx", skip=1)%>%
+  mutate(site="Lakeba")%>%
+  pivot_longer(cols = Jan:Dec,names_to = "months", values_to = "rainfall_mm")
+ 
+  View(Lakeba_rainfall)
+
+```
+#Error: Problem with `mutate()` column `date`.
+ℹ `date = ym(paste(year, month))`.
+x cannot coerce type 'closure' to vector of type 'character'
+Run `rlang::last_error()` to see where the error occurred.
+
+
+#Run cyclone data
+```{r}
+library(readxl)
+Cyclone_data <- read_excel("Documents/Study/Climate data in Lau/Excel/Cyclone data.xlsx")%>%
+  mutate(winds=factor(`Initial winds warning`,levels=c("Gale","Storm","Hurricane"),ordered = T))
+
+Cyclone_data<-ggplot(cycl,aes(x=Date,groups=winds,fill=wind))+
+  geom_histogram(size=3)+
+  theme_bw()
+
+View(Cyclone_data)
+
+```
+
